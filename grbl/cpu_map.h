@@ -308,7 +308,7 @@
   //  #define LIMIT_INT_vect  PCINT0_vect
   //  #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
   //  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
-  #define DISABLE_HW_LIMITS
+  //#define DISABLE_HW_LIMITS
 
   // Define spindle enable and spindle direction output pins.
   #define SPINDLE_ENABLE_DDR      DDRG
@@ -484,72 +484,85 @@
   #define STEPPER_DISABLE_PORT(i) _PORT(STEPPER_DISABLE_PORT_##i)
   #define STEPPER_DISABLE_PIN(i) _PIN(STEPPER_DISABLE_PORT_##i)
 
-  // Define homing/hard limit switch input pins and limit interrupt vectors.
-  #define MIN_LIMIT_PORT_0 D
-  #define MIN_LIMIT_PORT_1 G
-  #define MIN_LIMIT_PORT_2 L
-  #if N_AXIS > 3
-    #define MIN_LIMIT_PORT_3 L
-  #endif
-  #if N_AXIS > 4
-    #define MIN_LIMIT_PORT_4 L
-  #endif
-  #if N_AXIS > 5
-    #define MIN_LIMIT_PORT_5 L
-  #endif
-  #define MIN_LIMIT_BIT_0 7 // X Limit Min - Pin D38
-  #define MIN_LIMIT_BIT_1 1 // Y Limit Min - Pin D40
-  #define MIN_LIMIT_BIT_2 7 // Z Limit Min - Pin D42
-  #if N_AXIS > 3
-    #define MIN_LIMIT_BIT_3 5 // A Limit Min - Pin D44
-  #endif
-  #if N_AXIS > 4
-    #define MIN_LIMIT_BIT_4 3 // B Limit Min - Pin D46
-  #endif
-  #if N_AXIS > 5
-    #define MIN_LIMIT_BIT_5 1 // C Limit Min - Pin D48
-  #endif
-  #define _MIN_LIMIT_BIT(i) MIN_LIMIT_BIT_##i
-  #define MIN_LIMIT_BIT(i) _MIN_LIMIT_BIT(i)
-  #define MIN_LIMIT_DDR(i) _DDR(MIN_LIMIT_PORT_##i)
-  #define MIN_LIMIT_PORT(i) _PORT(MIN_LIMIT_PORT_##i)
-  #define MIN_LIMIT_PIN(i) _PIN(MIN_LIMIT_PORT_##i)
+  // Define homing/hard limit switch input pins and limit interrupt vectors
+  // #define MIN_LIMIT_PORT_0 D
+  // #define MIN_LIMIT_PORT_1 G
+  // #define MIN_LIMIT_PORT_2 L
+  // #if N_AXIS > 3
+    // #define MIN_LIMIT_PORT_3 L
+  // #endif
+  // #if N_AXIS > 4
+    // #define MIN_LIMIT_PORT_4 L
+  // #endif
+  // #if N_AXIS > 5
+    // #define MIN_LIMIT_PORT_5 L
+  // #endif
+  // #define MIN_LIMIT_BIT_0 7 // X Limit Min - Pin D38
+  // #define MIN_LIMIT_BIT_1 1 // Y Limit Min - Pin D40
+  // #define MIN_LIMIT_BIT_2 7 // Z Limit Min - Pin D42
+  // #if N_AXIS > 3
+    // #define MIN_LIMIT_BIT_3 5 // A Limit Min - Pin D44
+  // #endif
+  // #if N_AXIS > 4
+    // #define MIN_LIMIT_BIT_4 3 // B Limit Min - Pin D46
+  // #endif
+  // #if N_AXIS > 5
+    // #define MIN_LIMIT_BIT_5 1 // C Limit Min - Pin D48
+  // #endif
+  // #define _MIN_LIMIT_BIT(i) MIN_LIMIT_BIT_##i
+  // #define MIN_LIMIT_BIT(i) _MIN_LIMIT_BIT(i)
+  // #define MIN_LIMIT_DDR(i) _DDR(MIN_LIMIT_PORT_##i)
+  // #define MIN_LIMIT_PORT(i) _PORT(MIN_LIMIT_PORT_##i)
+  // #define MIN_LIMIT_PIN(i) _PIN(MIN_LIMIT_PORT_##i)
 
-  #define MAX_LIMIT_PORT_0 G
-  #define MAX_LIMIT_PORT_1 G
-  #define MAX_LIMIT_PORT_2 L
-  #if N_AXIS > 3
-    #define MAX_LIMIT_PORT_3 L
-  #endif
-  #if N_AXIS > 4
-    #define MAX_LIMIT_PORT_4 L
-  #endif
-  #if N_AXIS > 5
-    #define MAX_LIMIT_PORT_5 L
-  #endif
-  #define MAX_LIMIT_BIT_0 2 // X Limit Max - Pin D39
-  #define MAX_LIMIT_BIT_1 0 // Y Limit Max - Pin D41
-  #define MAX_LIMIT_BIT_2 6 // Z Limit Max - Pin D43
-  #if N_AXIS > 3
-    #define MAX_LIMIT_BIT_3 4 // A Limit Max - Pin D45
-  #endif
-  #if N_AXIS > 4
-    #define MAX_LIMIT_BIT_4 2 // B Limit Max - Pin D47
-  #endif
-  #if N_AXIS > 5
-    #define MAX_LIMIT_BIT_5 0 // C Limit Max - Pin D49
-  #endif
-  #define _MAX_LIMIT_BIT(i) MAX_LIMIT_BIT_##i
-  #define MAX_LIMIT_BIT(i) _MAX_LIMIT_BIT(i)
-  #define MAX_LIMIT_DDR(i) _DDR(MAX_LIMIT_PORT_##i)
-  #define MAX_LIMIT_PORT(i) _PORT(MAX_LIMIT_PORT_##i)
-  #define MAX_LIMIT_PIN(i) _PIN(MAX_LIMIT_PORT_##i)
+  // #define MAX_LIMIT_PORT_0 G
+  // #define MAX_LIMIT_PORT_1 G
+  // #define MAX_LIMIT_PORT_2 L
+  // #if N_AXIS > 3
+    // #define MAX_LIMIT_PORT_3 L
+  // #endif
+  // #if N_AXIS > 4
+    // #define MAX_LIMIT_PORT_4 L
+  // #endif
+  // #if N_AXIS > 5
+    // #define MAX_LIMIT_PORT_5 L
+  // #endif
+  // #define MAX_LIMIT_BIT_0 2 // X Limit Max - Pin D39
+  // #define MAX_LIMIT_BIT_1 0 // Y Limit Max - Pin D41
+  // #define MAX_LIMIT_BIT_2 6 // Z Limit Max - Pin D43
+  // #if N_AXIS > 3
+    // #define MAX_LIMIT_BIT_3 4 // A Limit Max - Pin D45
+  // #endif
+  // #if N_AXIS > 4
+    // #define MAX_LIMIT_BIT_4 2 // B Limit Max - Pin D47
+  // #endif
+  // #if N_AXIS > 5
+    // #define MAX_LIMIT_BIT_5 0 // C Limit Max - Pin D49
+  // #endif
+  // #define _MAX_LIMIT_BIT(i) MAX_LIMIT_BIT_##i
+  // #define MAX_LIMIT_BIT(i) _MAX_LIMIT_BIT(i)
+  // #define MAX_LIMIT_DDR(i) _DDR(MAX_LIMIT_PORT_##i)
+  // #define MAX_LIMIT_PORT(i) _PORT(MAX_LIMIT_PORT_##i)
+  // #define MAX_LIMIT_PIN(i) _PIN(MAX_LIMIT_PORT_##i)
 
   //  #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
   //  #define LIMIT_INT_vect  PCINT0_vect
   //  #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
   //  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
-  #define DISABLE_HW_LIMITS
+  // #define DISABLE_HW_LIMITS
+
+  #define LIMIT_DDR       DDRL
+  #define LIMIT_PORT      PORTL
+  #define LIMIT_PIN       PINL
+  #define X_LIMIT_BIT     7 // Pin 42
+  #define Y_LIMIT_BIT     6 // Pin 43
+  #define Z_LIMIT_BIT     5 // Pin 44
+  #define A_LIMIT_BIT     4 // Pin 45
+  #define B_LIMIT_BIT     3 // Pin 46
+  #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
+  #define LIMIT_INT_vect  PCINT0_vect
+  #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
+  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)|(1<<A_LIMIT_BIT)|(1<<B_LIMIT_BIT)) // All limit bits
 
   // Define spindle enable and spindle direction output pins.
   #define SPINDLE_ENABLE_DDR      DDRF

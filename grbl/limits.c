@@ -33,7 +33,7 @@
 
 void limits_init()
 {
-  #ifdef DEFAULTS_RAMPS_BOARD
+  #ifndef DEFAULTS_RAMPS_BOARD
     // Set as input pins
     MIN_LIMIT_DDR(0) &= ~(1<<MIN_LIMIT_BIT(0));
     MIN_LIMIT_DDR(1) &= ~(1<<MIN_LIMIT_BIT(1));
@@ -162,7 +162,7 @@ void limits_disable()
     PCICR &= ~(1 << LIMIT_INT);  // Disable Pin Change Interrupt
   #endif // DEFAULTS_RAMPS_BOARD
 }
-#ifdef DEFAULTS_RAMPS_BOARD
+#ifndef DEFAULTS_RAMPS_BOARD
   #if N_AXIS == 4
     static volatile uint8_t * const max_limit_pins[N_AXIS] = {&MAX_LIMIT_PIN(0), &MAX_LIMIT_PIN(1), &MAX_LIMIT_PIN(2), &MAX_LIMIT_PIN(3)};
     static volatile uint8_t * const min_limit_pins[N_AXIS] = {&MIN_LIMIT_PIN(0), &MIN_LIMIT_PIN(1), &MIN_LIMIT_PIN(2), &MIN_LIMIT_PIN(3)};
@@ -233,7 +233,7 @@ uint8_t limits_get_state()
   #endif //DEFAULTS_RAMPS_BOARD
 }
 
-#ifdef DEFAULTS_RAMPS_BOARD
+#ifndef DEFAULTS_RAMPS_BOARD
   #ifndef DISABLE_HW_LIMITS
     #error "HW limits are not implemented"
   #endif
