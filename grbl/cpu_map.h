@@ -551,18 +551,18 @@
   //  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)) // All limit bits
   // #define DISABLE_HW_LIMITS
 
-  #define LIMIT_DDR       DDRL
-  #define LIMIT_PORT      PORTL
-  #define LIMIT_PIN       PINL
-  #define X_LIMIT_BIT     7 // Pin 42
-  #define Y_LIMIT_BIT     6 // Pin 43
-  #define Z_LIMIT_BIT     5 // Pin 44
-  #define A_LIMIT_BIT     4 // Pin 45
-  #define B_LIMIT_BIT     3 // Pin 46
+  #define LIMIT_DDR       DDRB
+  #define LIMIT_PORT      PORTB
+  #define LIMIT_PIN       PINB
+  #define X_LIMIT_BIT     3 // Pin 50
+  #define Y_LIMIT_BIT     2 // Pin 51
+  #define Z_LIMIT_BIT     1 // Pin 52
+  #define A_LIMIT_BIT     0 // Pin 53
+  //#define B_LIMIT_BIT     0 //
   #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
   #define LIMIT_INT_vect  PCINT0_vect
   #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
-  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)|(1<<A_LIMIT_BIT)|(1<<B_LIMIT_BIT)) // All limit bits
+  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)|(1<<A_LIMIT_BIT)) // All limit bits
 
   // Define spindle enable and spindle direction output pins.
   #define SPINDLE_ENABLE_DDR      DDRF

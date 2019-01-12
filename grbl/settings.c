@@ -419,7 +419,7 @@ uint8_t get_direction_pin_mask(uint8_t axis_idx)
     if ( axis_idx == AXIS_1 ) { return((1<<X_LIMIT_BIT)); }
     if ( axis_idx == AXIS_2 ) { return((1<<Y_LIMIT_BIT)); }
 	if ( axis_idx == AXIS_4 ) { return((1<<A_LIMIT_BIT)); }
-    if ( axis_idx == AXIS_5 ) { return((1<<B_LIMIT_BIT)); }
+    //if ( axis_idx == AXIS_5 ) { return((1<<B_LIMIT_BIT)); }
     return((1<<Z_LIMIT_BIT));
   }
 #endif //DEFAULTS_RAMPS_BOARD
