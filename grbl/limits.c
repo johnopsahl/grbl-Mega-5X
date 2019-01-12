@@ -192,7 +192,7 @@ void limits_disable()
 uint8_t limits_get_state()
 {
   uint8_t limit_state = 0;
-  #ifdef DEFAULTS_RAMPS_BOARD
+  #ifndef DEFAULTS_RAMPS_BOARD
     uint8_t pin;
     uint8_t idx;
     #ifdef INVERT_LIMIT_PIN_MASK
@@ -234,9 +234,9 @@ uint8_t limits_get_state()
 }
 
 #ifndef DEFAULTS_RAMPS_BOARD
-  #ifndef DISABLE_HW_LIMITS
-    #error "HW limits are not implemented"
-  #endif
+  // #ifndef DISABLE_HW_LIMITS
+    // #error "HW limits are not implemented"
+  // #endif
 #else
 // This is the Limit Pin Change Interrupt, which handles the hard limit feature. A bouncing
 // limit switch can cause a lot of problems, like false readings and multiple interrupt calls.
