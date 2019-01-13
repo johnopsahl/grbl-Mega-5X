@@ -404,16 +404,16 @@
     #define STEP_PORT_5 C
   #endif
   #define STEP_BIT_0 0  // X Step - Pin D22
-  #define STEP_BIT_1 2  // Y Step - Pin D24
-  #define STEP_BIT_2 4  // Z Step - Pin D26
+  #define STEP_BIT_1 1  // Y Step - Pin D23
+  #define STEP_BIT_2 6  // Z Step - Pin D28
   #if N_AXIS > 3
-    #define STEP_BIT_3 6 // A Step - Pin D28
+    #define STEP_BIT_3 7 // A Step - Pin D29
   #endif
   #if N_AXIS > 4
-    #define STEP_BIT_4 7 // B Step - Pin D30
+    #define STEP_BIT_4 3 // B Step - Pin D34
   #endif
   #if N_AXIS > 5
-    #define STEP_BIT_5 5 // C Step - Pin D32
+    #define STEP_BIT_5 2 // C Step - Pin D35
   #endif
   #define _STEP_BIT(i) STEP_BIT_##i
   #define STEP_BIT(i) _STEP_BIT(i)
@@ -425,9 +425,9 @@
   // Define step direction output pins
   #define DIRECTION_PORT_0 A
   #define DIRECTION_PORT_1 A
-  #define DIRECTION_PORT_2 A
+  #define DIRECTION_PORT_2 C
   #if N_AXIS > 3
-    #define DIRECTION_PORT_3 A
+    #define DIRECTION_PORT_3 C
   #endif
   #if N_AXIS > 4
     #define DIRECTION_PORT_4 C
@@ -435,17 +435,17 @@
   #if N_AXIS > 5
     #define DIRECTION_PORT_5 C
   #endif
-  #define DIRECTION_BIT_0 1 // X Dir - Pin D23
+  #define DIRECTION_BIT_0 2 // X Dir - Pin D24
   #define DIRECTION_BIT_1 3 // Y Dir - Pin D25
-  #define DIRECTION_BIT_2 5 // Z Dir - Pin D27
+  #define DIRECTION_BIT_2 7 // Z Dir - Pin D30
   #if N_AXIS > 3
-    #define DIRECTION_BIT_3 7 // A Dir - Pin D29
+    #define DIRECTION_BIT_3 6 // A Dir - Pin D31
   #endif
   #if N_AXIS > 4
-    #define DIRECTION_BIT_4 6 // B Dir - Pin D31
+    #define DIRECTION_BIT_4 1 // B Dir - Pin D36
   #endif
   #if N_AXIS > 5
-    #define DIRECTION_BIT_5 4 // C Dir - Pin D33
+    #define DIRECTION_BIT_5 0 // C Dir - Pin D37
   #endif
   #define _DIRECTION_BIT(i) DIRECTION_BIT_##i
   #define DIRECTION_BIT(i) _DIRECTION_BIT(i)
@@ -455,29 +455,29 @@
   #define DIRECTION_PIN(i) _PIN(DIRECTION_PORT_##i)
 
   // Define stepper driver enable/disable output pin
-  #define STEPPER_DISABLE_PORT_0 E
-  #define STEPPER_DISABLE_PORT_1 E
-  #define STEPPER_DISABLE_PORT_2 G
+  #define STEPPER_DISABLE_PORT_0 A
+  #define STEPPER_DISABLE_PORT_1 A
+  #define STEPPER_DISABLE_PORT_2 C
   #if N_AXIS > 3
-    #define STEPPER_DISABLE_PORT_3 E
+    #define STEPPER_DISABLE_PORT_3 C
   #endif
   #if N_AXIS > 4
-    #define STEPPER_DISABLE_PORT_4 H
+    #define STEPPER_DISABLE_PORT_4 D
   #endif
   #if N_AXIS > 5
-    #define STEPPER_DISABLE_PORT_5 H
+    #define STEPPER_DISABLE_PORT_5 G
   #endif
-  #define STEPPER_DISABLE_BIT_0 4 // X Enable - Pin D2
-  #define STEPPER_DISABLE_BIT_1 5 // Y Enable - Pin D3
-  #define STEPPER_DISABLE_BIT_2 5 // Z Enable - Pin D4
+  #define STEPPER_DISABLE_BIT_0 4 // X Enable - Pin D26
+  #define STEPPER_DISABLE_BIT_1 5 // Y Enable - Pin D27
+  #define STEPPER_DISABLE_BIT_2 5 // Z Enable - Pin D32
   #if N_AXIS > 3
-    #define STEPPER_DISABLE_BIT_3 3 // A Enable - Pin D5
+    #define STEPPER_DISABLE_BIT_3 4 // A Enable - Pin D33
   #endif
   #if N_AXIS > 4
-    #define STEPPER_DISABLE_BIT_4 3 // B Enable - Pin D6
+    #define STEPPER_DISABLE_BIT_4 7 // B Enable - Pin D38
   #endif
   #if N_AXIS > 5
-    #define STEPPER_DISABLE_BIT_5 4 // C Enable - Pin D7
+    #define STEPPER_DISABLE_BIT_5 2 // C Enable - Pin D39
   #endif
   #define STEPPER_DISABLE_BIT(i) STEPPER_DISABLE_BIT_##i
   #define STEPPER_DISABLE_DDR(i) _DDR(STEPPER_DISABLE_PORT_##i)
@@ -554,41 +554,43 @@
   #define LIMIT_DDR       DDRB
   #define LIMIT_PORT      PORTB
   #define LIMIT_PIN       PINB
-  #define X_LIMIT_BIT     3 // Pin 50
-  #define Y_LIMIT_BIT     2 // Pin 51
-  #define Z_LIMIT_BIT     1 // Pin 52
-  #define A_LIMIT_BIT     0 // Pin 53
+  #define X_LIMIT_BIT     3 // Pin D50
+  #define Y_LIMIT_BIT     2 // Pin D51
+  #define Z_LIMIT_BIT     1 // Pin D52
+  #define A_LIMIT_BIT     0 // Pin D53
+  #define B_LIMIT_BIT     4 // Pin D10
+  #define C_LIMIT_BIT     5 // Pin D11
   //#define B_LIMIT_BIT     0 //
   #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
   #define LIMIT_INT_vect  PCINT0_vect
   #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
-  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)|(1<<A_LIMIT_BIT)) // All limit bits
+  #define LIMIT_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)|(1<<Z_LIMIT_BIT)|(1<<A_LIMIT_BIT)|(1<<B_LIMIT_BIT)|(1<<C_LIMIT_BIT)) // All limit bits
 
   // Define spindle enable and spindle direction output pins.
-  #define SPINDLE_ENABLE_DDR      DDRF
-  #define SPINDLE_ENABLE_PORT     PORTF
-  #define SPINDLE_ENABLE_BIT      0 // Pin A0
-  #define SPINDLE_DIRECTION_DDR   DDRF
-  #define SPINDLE_DIRECTION_PORT  PORTF
-  #define SPINDLE_DIRECTION_BIT   1 // Pin A1
+  #define SPINDLE_ENABLE_DDR      DDRE
+  #define SPINDLE_ENABLE_PORT     PORTE
+  #define SPINDLE_ENABLE_BIT      4 // Pin D2
+  #define SPINDLE_DIRECTION_DDR   DDRE
+  #define SPINDLE_DIRECTION_PORT  PORTE
+  #define SPINDLE_DIRECTION_BIT   5 // Pin D3
 
   // Define flood and mist coolant enable output pins.
-  #define COOLANT_FLOOD_DDR   DDRF
-  #define COOLANT_FLOOD_PORT  PORTF
-  #define COOLANT_FLOOD_BIT   2 // Pin A2
-  #define COOLANT_MIST_DDR    DDRF
-  #define COOLANT_MIST_PORT   PORTF
-  #define COOLANT_MIST_BIT    3 // Pin A3
+  #define COOLANT_FLOOD_DDR   DDRG
+  #define COOLANT_FLOOD_PORT  PORTG
+  #define COOLANT_FLOOD_BIT   5 // Pin D4
+  #define COOLANT_MIST_DDR    DDRE
+  #define COOLANT_MIST_PORT   PORTE
+  #define COOLANT_MIST_BIT    3 // Pin D5
 
   // Define user-control CONTROLs (cycle start, reset, feed hold) input pins.
   // NOTE: All CONTROLs pins must be on the same port and not on a port with other input pins (limits).
-  #define CONTROL_DDR       DDRF
-  #define CONTROL_PIN       PINF
-  #define CONTROL_PORT      PORTF
-  #define CONTROL_RESET_BIT         4  // Pin A4
-  #define CONTROL_FEED_HOLD_BIT     5  // Pin A5
-  #define CONTROL_CYCLE_START_BIT   6  // Pin A6
-  #define CONTROL_SAFETY_DOOR_BIT   7  // Pin A7
+  #define CONTROL_DDR       DDRK
+  #define CONTROL_PORT      PORTK
+  #define CONTROL_PIN       PINK
+  #define CONTROL_RESET_BIT         0  // Pin A8
+  #define CONTROL_FEED_HOLD_BIT     1  // Pin A9
+  #define CONTROL_CYCLE_START_BIT   2  // Pin A10
+  #define CONTROL_SAFETY_DOOR_BIT   3  // Pin A11
   #define CONTROL_INT       PCIE2  // Pin change interrupt enable pin
   #define CONTROL_INT_vect  PCINT2_vect
   #define CONTROL_PCMSK     PCMSK2 // Pin change interrupt register
@@ -598,7 +600,7 @@
   #define PROBE_DDR       DDRK
   #define PROBE_PIN       PINK
   #define PROBE_PORT      PORTK
-  #define PROBE_BIT       0  // Pin A8
+  #define PROBE_BIT       4  // Pin A12
   #define PROBE_MASK      (1<<PROBE_BIT)
 
   // Advanced Configuration Below You should not need to touch these variables
@@ -623,9 +625,9 @@
   #define SPINDLE_OCRA_TOP_VALUE  0x0400 // PWM counter reset value. Should be the same as PWM_MAX_VALUE in hex.
 
   // Define spindle output pins.
-  #define SPINDLE_PWM_DDR   DDRB
-  #define SPINDLE_PWM_PORT  PORTB
-  #define SPINDLE_PWM_BIT   4 // Pin D10
+  #define SPINDLE_PWM_DDR   DDRH
+  #define SPINDLE_PWM_PORT  PORTH
+  #define SPINDLE_PWM_BIT   5 // Pin D10
 
 #endif
 
