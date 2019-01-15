@@ -560,7 +560,6 @@
   #define A_LIMIT_BIT     0 // Pin D53
   #define B_LIMIT_BIT     4 // Pin D10
   #define C_LIMIT_BIT     5 // Pin D11
-  //#define B_LIMIT_BIT     0 //
   #define LIMIT_INT       PCIE0  // Pin change interrupt enable pin
   #define LIMIT_INT_vect  PCINT0_vect
   #define LIMIT_PCMSK     PCMSK0 // Pin change interrupt register
@@ -585,8 +584,8 @@
   // Define user-control CONTROLs (cycle start, reset, feed hold) input pins.
   // NOTE: All CONTROLs pins must be on the same port and not on a port with other input pins (limits).
   #define CONTROL_DDR       DDRK
-  #define CONTROL_PORT      PORTK
   #define CONTROL_PIN       PINK
+  #define CONTROL_PORT      PORTK
   #define CONTROL_RESET_BIT         0  // Pin A8
   #define CONTROL_FEED_HOLD_BIT     1  // Pin A9
   #define CONTROL_CYCLE_START_BIT   2  // Pin A10
@@ -627,7 +626,7 @@
   // Define spindle output pins.
   #define SPINDLE_PWM_DDR   DDRH
   #define SPINDLE_PWM_PORT  PORTH
-  #define SPINDLE_PWM_BIT   5 // Pin D10
+  #define SPINDLE_PWM_BIT   5 // Pin D8
 
 #endif
 

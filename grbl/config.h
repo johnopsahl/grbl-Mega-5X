@@ -144,7 +144,7 @@
 // on separate pin, but homed in one cycle. Also, it should be noted that the function of hard limits
 // will not be affected by pin sharing.
 // NOTE: Defaults are set for a traditional 3-axis CNC machine. Z-axis first to clear, followed by X & Y.
-#ifdef DEFAULTS_RAMPS_BOARD
+#ifndef DEFAULTS_RAMPS_BOARD
   #if N_AXIS == 4 // 4 axis : homing
     #define HOMING_CYCLE_0 (1<<AXIS_4) // Home 4th axis (A)
     #define HOMING_CYCLE_1 (1<<AXIS_1) // Home X axis
